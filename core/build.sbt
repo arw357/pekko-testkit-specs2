@@ -1,1 +1,1 @@
-name := "akka-testkit-specs2-core"
+name := "pekko-testkit-specs2-core"

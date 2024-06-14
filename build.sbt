@@ -1,6 +1,6 @@
 import ReleaseTransformations._
 
-ThisBuild / organization := "net.ruippeixotog"
+ThisBuild / organization := "org.arw357"
 
 ThisBuild / scalaVersion := "2.13.10"
 
@@ -27,19 +27,20 @@ lazy val commonSettings = Seq(
 
   scalafmtOnCompile := true,
 
-  publishTo := sonatypePublishToBundle.value,
+//  publishTo := sonatypePublishToBundle.value,
 
   publishMavenStyle := true,
   Test / publishArtifact := false,
   pomIncludeRepository := { _ => false },
 
   licenses := Seq("MIT License" -> url("http://www.opensource.org/licenses/mit-license.php")),
-  homepage := Some(url("https://github.com/ruippeixotog/akka-testkit-specs2")),
+  homepage := Some(url("https://github.com/yields-io/pekko-testkit-specs2")),
   scmInfo := Some(ScmInfo(
-    url("https://github.com/ruippeixotog/akka-testkit-specs2"),
-    "scm:git:https://github.com/ruippeixotog/akka-testkit-specs2.git")),
+    url("https://github.com/yields-io/pekko-testkit-specs2"),
+    "scm:git:https://github.com/yields-io/pekko-testkit-specs2.git")),
   developers := List(
     Developer("ruippeixotog", "Rui Gonçalves", "ruippeixotog@gmail.com", url("https://github.com/ruippeixotog")))
+
   // format: on
 )
 
@@ -58,10 +59,7 @@ releaseProcess := Seq[ReleaseStep](
   runTest,
   setReleaseVersion,
   commitReleaseVersion,
-  tagRelease,
   releaseStepCommandAndRemaining("+publishSigned"),
-  releaseStepCommand("sonatypeBundleRelease"),
   setNextVersion,
-  commitNextVersion,
-  pushChanges
+  commitNextVersion
 )

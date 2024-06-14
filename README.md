@@ -1,19 +1,18 @@
-# akka-testkit-specs2 [![Build Status](https://travis-ci.org/ruippeixotog/akka-testkit-specs2.svg?branch=master)](https://travis-ci.org/ruippeixotog/akka-testkit-specs2) [![Coverage Status](https://coveralls.io/repos/github/ruippeixotog/akka-testkit-specs2/badge.svg?branch=master)](https://coveralls.io/github/ruippeixotog/akka-testkit-specs2?branch=master)
 
-A small library for those who use [akka-testkit](http://doc.akka.io/docs/akka/current/scala/testing.html) in [specs2](http://etorreborre.github.io/specs2/) specifications. Provides idiomatic specs2 matchers for checking the correct reception of messages by test actors and probes, handling the provision and proper termination of test actor systems.
+A small library for those who use [pekko-testkit] in [specs2](http://etorreborre.github.io/specs2/) specifications. Provides idiomatic specs2 matchers for checking the correct reception of messages by test actors and probes, handling the provision and proper termination of test actor systems.
 
 ## Usage
 
-To use akka-testkit-specs2 in an existing SBT project with Scala 2.12 or 2.13, add the following dependency to your `build.sbt`:
+To use pekko-testkit-specs2 in an existing SBT project with Scala 2.12 or 2.13, add the following dependency to your `build.sbt`:
 
 ```scala
-libraryDependencies += "net.ruippeixotog" %% "akka-testkit-specs2" % "0.3.1"
+libraryDependencies += "org.arw357" %% "pekko-testkit-specs2" % "1.0.1-y1"
 ```
 
-To use it in your specifications, just extend `AkkaSpecification`:
+To use it in your specifications, just extend `PekkoSpecification`:
 
 ```scala
-class MySpec extends AkkaSpecification {
+class MySpec extends PekkoSpecification {
 
   "MySpec" should {
 
@@ -25,12 +24,12 @@ class MySpec extends AkkaSpecification {
 }
 ```
 
-If you can't extend classes in your specification, just mix-in the trait `AkkaSpecificationLike` (you just need to provide it an `ActorSystem`). If you only need the matchers, you can also mix-in directly `AkkaMatchers`. While `AkkaSpecification` and `AkkaSpecificationLike` only support mutable specifications, `AkkaMatchers` should work in immutable specifications too.
+If you can't extend classes in your specification, just mix-in the trait `PekkoSpecificationLike` (you just need to provide it an `ActorSystem`). If you only need the matchers, you can also mix-in directly `PekkoMatchers`. While `PekkoSpecification` and `PekkoSpecificationLike` only support mutable specifications, `PekkoMatchers` should work in immutable specifications too.
 
-The testkit provides several ways to check messages received by a test actor or a test probe. This library provides expectations already existent in akka-testkit `TestKitBase` in the form of specs2 `Matchers` with proper failure messages and an idiomatic syntax:
+The testkit provides several ways to check messages received by a test actor or a test probe. This library provides expectations already existent in pekko-testkit `TestKitBase` in the form of specs2 `Matchers` with proper failure messages and an idiomatic syntax:
 
 ```scala
-class MySpec extends AkkaSpecification {
+class MySpec extends PekkoSpecification {
   // testActor is not thread-safe; use `TestProbe` instances per example when possible!
   sequential
 
@@ -76,12 +75,12 @@ class MySpec extends AkkaSpecification {
 }
 ```
 
-## Akka Typed Actors
+## Pekko Typed Actors
 
-If you're using the new [Typed Actor API](https://doc.akka.io/docs/akka/current/typed/actors.html) avalilable since Akka 2.6, you can use `AkkaTypedSpecification`, `AkkaTypedSpecificationLike` and `AkkaTypedMatchers` instead of the traits above:
+If you're using the new [Typed Actor API] avalilable since Pekko 1.0.1, you can use `PekkoTypedSpecification`, `PekkoTypedSpecificationLike` and `PekkoTypedMatchers` instead of the traits above:
 
 ```scala
-class MyTypedSpec extends AkkaTypedSpecification {
+class MyTypedSpec extends PekkoTypedSpecification {
 
   "my typed test probe" should {
 

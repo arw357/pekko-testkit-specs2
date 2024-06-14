@@ -1,3 +1,3 @@
-name := "akka-testkit-specs2-typed"
+name := "pekko-testkit-specs2-typed"
 
-libraryDependencies ++= Seq("com.typesafe.akka" %% "akka-actor-testkit-typed" % "2.6.20")
+libraryDependencies ++= Seq("org.apache.pekko" %% "pekko-actor-testkit-typed" % "1.0.1")
